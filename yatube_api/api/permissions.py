@@ -1,7 +1,7 @@
 from rest_framework import permissions
 
 
-class AuthorOrReadOnly(permissions.BasePermission):
+class AuthOrAuthorOrReadOnly(permissions.BasePermission):
     """
     Кастомный пермишн, который разрешает полный доступ к объекту только автору.
 

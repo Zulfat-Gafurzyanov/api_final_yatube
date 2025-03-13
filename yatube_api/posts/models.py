@@ -1,11 +1,13 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 
+from posts.constant import MAX_FIELD_LENGTH
+
 User = get_user_model()
 
 
 class Group(models.Model):
-    title = models.CharField(max_length=200)
+    title = models.CharField(MAX_FIELD_LENGTH)
     slug = models.SlugField(unique=True)
     description = models.TextField()
 
@@ -24,6 +26,9 @@ class Post(models.Model):
         Group, on_delete=models.SET_NULL,
         related_name='posts', null=True, blank=True
     )
+
+    class Meta:
+        ordering = ('-pub_date',)
 
     def __str__(self):
         return self.text
